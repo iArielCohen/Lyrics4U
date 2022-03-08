@@ -28,31 +28,8 @@ function showData(data) {
     </ul>
   `;
 
-    if (data.prev || data.next) {
-        more.innerHTML = `
-      ${
-        data.prev
-          ? `<button class="btn" onclick="getMoreSongs('${data.prev}')">Prev</button>`
-          : ''
-      }
-      ${
-        data.next
-          ? `<button class="btn" onclick="getMoreSongs('${data.next}')">Next</button>`
-          : ''
-      }
-    `;
-    } else {
-        more.innerHTML = '';
-    }
 }
 
-// Get prev and next songs
-async function getMoreSongs(url) {
-    const res = await fetch(`https://cors-anywhere.herokuapp.com/${url}`);
-    const data = await res.json();
-
-    showData(data);
-}
 
 // Get lyrics for song
 async function getLyrics(artist, songTitle) {
@@ -74,7 +51,7 @@ async function getLyrics(artist, songTitle) {
     more.innerHTML = '';
 }
 
-// Event listeners
+// Message display
 form.addEventListener('submit', e => {
     e.preventDefault();
     const searchTermMessage = "It Seems Like You Forgot To Type What You Are Looking For"
